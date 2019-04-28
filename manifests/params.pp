@@ -45,17 +45,12 @@
 class debianupgrade::params {
   $from = $::lsbdistcodename
 
-#  $to   = $::lsbdistcodename ? {
-#    'wheezy' => 'jessie',
-#    'jessie' => 'stretch',
-#  }
-
   case $::lsbdistcodename {
-    'wheezy': {
-      $to = 'jessie'
-    }
     'jessie': {
       $to = 'stretch'
+    }
+    'stretch': {
+      $to = 'buster'
     }
     default: {
       fail("The ${module_name} module is not supported on an ${::osfamily}/${::lsbdistcodename} based system.")
